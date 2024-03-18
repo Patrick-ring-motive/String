@@ -3,7 +3,9 @@ package String
 import (
 	"fmt"
 	. "github.com/Patrick-ring-motive/utils"
+	"io"
 	"net/http"
+	"strconv"
 	"strings"
 	"unicode"
 )
@@ -376,4 +378,169 @@ func (s String) TrimSpace() String {
 
 func (s String) TrimSuffix(suffix string) String {
 	return NewString(strings.TrimSuffix(*s.Value, suffix))
+}
+
+func (s String) WriteBuilder(b *strings.Builder) (int, error) {
+	return b.WriteString(*(s.Value))
+}
+
+func (s String) NewReader() *strings.Reader {
+	return strings.NewReader(*s.Value)
+}
+
+func (s String) Reset(r *strings.Reader) {
+	r.Reset(*s.Value)
+}
+
+func (ss Strings) NewReplacer() *strings.Replacer {
+	return strings.NewReplacer(OldStrings(ss)...)
+}
+
+func (s String) Replacer(r *strings.Replacer) String {
+	return NewString(r.Replace(*s.Value))
+}
+
+func (s String) WriteReplacer(w io.Writer, r *strings.Replacer) (n int, err error) {
+	return r.WriteString(w, *s.Value)
+}
+
+func (s String) AppendQuote(dst []byte) []byte {
+	return strconv.AppendQuote(dst, *s.Value)
+}
+
+func (s String) AppendQuoteToASCII(dst []byte) []byte {
+	return strconv.AppendQuoteToASCII(dst, *s.Value)
+}
+
+func (s String) AppendQuoteToGraphic(dst []byte) []byte {
+	return strconv.AppendQuoteToGraphic(dst, *s.Value)
+}
+
+func (s String) Atoi() (int, error) {
+	return strconv.Atoi(*s.Value)
+}
+
+func (s String) CanBackquote() bool {
+	return strconv.CanBackquote(*s.Value)
+}
+
+func FormatBool(b bool) String {
+	return NewString(strconv.FormatBool(b))
+}
+
+func FormatComplex(c complex128, fmt byte, prec, bitSize int) String {
+	return NewString(strconv.FormatComplex(c, fmt, prec, bitSize))
+}
+
+func FormatFloat(f float64, fmt byte, prec, bitSize int) String {
+	return NewString(strconv.FormatFloat(f, fmt, prec, bitSize))
+}
+
+func FormatInt(i int64, base int) String {
+	return NewString(strconv.FormatInt(i, base))
+}
+
+func FormatUint(i uint64, base int) String {
+	return NewString(strconv.FormatUint(i, base))
+}
+
+func Itoa(i int) String {
+	return NewString(strconv.Itoa(i))
+}
+
+func (s String) ParseComplex(bitSize int) (complex128, error) {
+	return strconv.ParseComplex(*s.Value, bitSize)
+}
+
+func (s String) ParseComplexes(bitSize int) complex128 {
+  c,err:= s.ParseComplex(bitSize)
+  AllowUnused(err)
+  return c
+}
+
+func (s String) ParseFloat(bitSize int) (float64, error) {
+	return strconv.ParseFloat(*s.Value, bitSize)
+}
+
+func (s String) ParseFloats(bitSize int) float64 {
+  c,err:= s.ParseFloat(bitSize)
+  AllowUnused(err)
+  return c
+}
+
+func (s String) ParseInt(base int, bitSize int) (int64, error) {
+	return strconv.ParseInt(*s.Value, base, bitSize)
+}
+
+func (s String) ParseInts(base int, bitSize int) int64 {
+  i,err:= s.ParseInt(base, bitSize)
+  AllowUnused(err)
+  return i
+}
+
+func (s String) ParseUint(base int, bitSize int) (uint64, error) {
+  return strconv.ParseUint(*s.Value, base, bitSize)
+}
+
+func (s String) ParseUints(base int, bitSize int) uint64 {
+  i,err:= s.ParseUint(base, bitSize)
+  AllowUnused(err)
+  return i
+}
+
+func (s String)Quote() String{
+  return NewString(strconv.Quote(*s.Value))
+}
+
+func QuoteRune(r rune) String{
+  return NewString(strconv.QuoteRune(r))
+}
+
+func QuoteRuneToASCII(r rune) String{
+  return NewString(strconv.QuoteRuneToASCII(r))
+}
+
+func QuoteRuneToGraphic(r rune) String{
+  return NewString(strconv.QuoteRuneToGraphic(r))
+}
+
+func (s String)QuoteToASCII() String{
+  return NewString(strconv.QuoteToASCII(*s.Value))
+}
+
+func (s String)QuoteToGraphic() String{
+  return NewString(strconv.QuoteToGraphic(*s.Value))
+}
+
+func (s String)QuotedPrefix() (String, error){
+  str,err:=strconv.QuotedPrefix(*s.Value)
+  return NewString(str),err
+}
+
+func (s String)QuotedPrefixes() String{
+  str,err:=s.QuotedPrefix()
+  AllowUnused(err)
+  return NewString(str)
+}
+
+func (s String)Unquote() (String, error){
+  str,err:=strconv.Unquote(*s.Value)
+  return NewString(str),err
+}
+
+func (s String)Unquotes() String{
+  str,err:=s.Unquote()
+  AllowUnused(err)
+  return NewString(str)
+}
+
+func (s String)UnquoteChar(quote byte) (value rune, multibyte bool, tail String, err error){
+  value,multibyte,tl,err:=strconv.UnquoteChar(*s.Value,quote)
+  return value,multibyte,NewString(tl),err
+}
+
+func (s String)UnquoteChars(quote byte)String{
+  value,multibyte,tl,err:=s.UnquoteChar(quote)
+  AllowUnused([]any{value,multibyte,err})
+  return NewString(tl)
 }
