@@ -8,10 +8,9 @@ The Go String package provides a wrapper around Go's built-in string type, offer
 To use the String package, first, ensure you have Go installed on your system. Then, import the package into your project:
 
 ```go
-import . "path/to/String"
+import . "github.com/Patrick-ring-motive/go-String"
 ```
 
-Replace `"path/to/String"` with the actual path where the package is located.
 
 ## Types
 
@@ -66,11 +65,11 @@ package main
 
 import (
   "fmt"
-  . "path/to/String" // Replace with the actual import path
+  . "github.com/Patrick-ring-motive/go-String" 
 )
 
 func main() {
-  s := String.S(" Hello, WORLD!!! ")
+  s := S(" Hello, WORLD!!! ")
   fmt.Println(s.TrimSpace().ToLower().ReplaceAll("world", "gopher").Value) // Output: "hello, gopher!!!"
 }
 ```

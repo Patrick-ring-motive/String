@@ -58,7 +58,7 @@ result := modifiedStr.CustomFunction()
 To use this package, import it into your Go project:
 
 ```go
-import "github.com/your-username/your-repo-name/String"
+import "github.com/Patrick-ring-motive/go-String"
 ```
 
 Replace `"github.com/your-username/your-repo-name/String"` with the actual path to the package.
