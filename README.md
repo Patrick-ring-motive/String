@@ -58,6 +58,19 @@ Converts all characters in the `String` to uppercase.
 
 Trims whitespace from both ends of the `String`.
 
+#### `strings` and `strconv`
+
+All of the methods in the  `strings` and `strconv` packages from the standard library that take a string as input have been implemented following a similar pattern where the first string input parameter is pulled out given a method that takes in the remaining input parameters eg. 
+
+```go
+func doAStandardStringOperation(s string,i int)string {}
+//becomes
+func (s String) doAStandardStringOperation (i int) String {}
+```
+
+For more information on the standard string operations, see the standard documentation
+* [string](https://go.patrickring.net/strings)
+
 ## Example Usage
 
 ```go
