@@ -69,7 +69,9 @@ func (s String) doAStandardStringOperation (i int) String {}
 ```
 
 For more information on the standard string operations, see the standard documentation
-* [string](https://go.patrickring.net/strings)
+* [strings](https://go.patrickring.net/strings)
+* [strconv](https://go.patrickring.net/strconv)
+* [strings blog](https://go.patrickring.net/blog/strings)
 
 ## Example Usage
 
