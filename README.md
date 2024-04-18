@@ -8,7 +8,7 @@ The Go String package provides a wrapper around Go's built-in string type, offer
 To use the String package, first, ensure you have Go installed on your system. Then, import the package into your project:
 
 ```go
-import . "github.com/Patrick-ring-motive/go-String"
+import . "github.com/Patrick-ring-motive/String"
 ```
 
 
@@ -80,7 +80,7 @@ package main
 
 import (
   "fmt"
-  . "github.com/Patrick-ring-motive/go-String" 
+  . "github.com/Patrick-ring-motive/String" 
 )
 
 func main() {
