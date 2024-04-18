@@ -261,7 +261,7 @@ func (s *Strin) Replace(old string, nw string, count ...int) *Strin {
 	return NewStrin(strings.Replace(s[0], old, nw, n))
 }
 
-func (s *Strin) ReplaceAll(oldnew ...string) *Strin {
+func (s Strin) ReplaceAll(oldnew ...string) *Strin {
 	old := ""
 	nw := ""
 	if len(oldnew) > 0 {
